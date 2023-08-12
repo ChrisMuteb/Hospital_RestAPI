@@ -2,6 +2,7 @@ package com.lasuperbe.hospital_management_system.rest;
 
 import com.lasuperbe.hospital_management_system.entity.Bill;
 import com.lasuperbe.hospital_management_system.entity.Doctor;
+import com.lasuperbe.hospital_management_system.entity.Insurance;
 import com.lasuperbe.hospital_management_system.service.HospitalService;
 import org.springframework.web.bind.annotation.*;
 
@@ -99,5 +100,48 @@ public class HospitalRestController {
         hospitalService.bill_deleteById(billId);
 
         return "Deleted doctor id - " + billId;
+    }
+
+    // Insurance
+    // expose "/insurances" and return a list of insurances
+    @GetMapping("/insurances")
+    public List<Insurance> ins_findAll(){ return hospitalService.ins_findAll();}
+
+    // expose "/insurances/{billId}" and return an insurance
+    @GetMapping("/insurances/{insId}")
+    public Insurance getIns(@PathVariable Integer insId){
+        Insurance ins = hospitalService.ins_findById(insId);
+
+        if(ins == null)
+            throw new RuntimeException("Bill id not found - " + insId);
+        return ins;
+    }
+
+    // add mapping for POST /insurances - add new insurance
+    @PostMapping("/insurances")
+    public Insurance addInsurance(@RequestBody Insurance theIns){
+        theIns.setId(0);
+        Insurance dbIns = hospitalService.ins_save(theIns);
+
+        return dbIns;
+    }
+
+    // add mapping for PUT /insurances - update existing insurance
+    @PutMapping("/insurances")
+    public Insurance updateInsurance(@RequestBody Insurance theIns){
+        Insurance dbIns = hospitalService.ins_save(theIns);
+        return dbIns;
+    }
+
+    // add mapping for DELETE /insurances/{insId} - delete doctor
+    @DeleteMapping("/insurances/{insId}")
+    public String deleteIns(@PathVariable Integer insId){
+        Insurance tempBill = hospitalService.ins_findById(insId);
+        if(tempBill == null)
+            throw new RuntimeException("Insurance id not found - " + insId);
+
+        hospitalService.ins_deleteById(insId);
+
+        return "Deleted doctor id - " + insId;
     }
 }

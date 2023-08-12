@@ -209,12 +209,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "root",
+							"value": "test123",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "root",
+							"value": "john",
 							"type": "string"
 						}
 					]
@@ -244,12 +244,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "root",
+							"value": "test123",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "root",
+							"value": "john",
 							"type": "string"
 						}
 					]
@@ -257,7 +257,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/bills/3",
+					"raw": "http://localhost:8080/api/bills/153",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -266,7 +266,7 @@
 					"path": [
 						"api",
 						"bills",
-						"3"
+						"153"
 					]
 				}
 			},
@@ -294,7 +294,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstname\": \"Peter\",\r\n    \"lastname\": \"Woolf\"\r\n}",
+					"raw": "{\r\n    \"amountInsured\": 20,\r\n    \"amountNotInsured\": 500,\r\n    \"dateSent\": \"12/012/2023\",\r\n    \"status\": \"active\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -338,7 +338,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 8,\r\n    \"firstname\": \"Chris\",\r\n    \"lastname\": \"Muteb\"\r\n}",
+					"raw": "{\r\n    \"id\": 158,\r\n    \"amountInsured\": 300,\r\n    \"amountNotInsured\": 500,\r\n    \"dateSent\": \"12/02/2023\",\r\n    \"status\": \"active\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -381,7 +381,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/bills/2",
+					"raw": "http://localhost:8080/api/bills/158",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -390,7 +390,202 @@
 					"path": [
 						"api",
 						"bills",
-						"2"
+						"158"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get insurances",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "test123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "john",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/insurances",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"insurances"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get insurance",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "test123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "john",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/insurances/203",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"insurances",
+						"203"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register an insurance",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "test123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "mary",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"benefitContract\": \"Boursorama\",\r\n    \"phoneNumber\": \"01289247\",\r\n    \"address\": \"Brest\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/insurances",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"insurances"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an insurance",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "mary",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "test123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 204,\r\n    \"benefitContract\": \"Revolut\",\r\n    \"phoneNumber\": \"01289247\",\r\n    \"address\": \"Brest\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/insurances",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"insurances"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an insurance",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "susan",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "test123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/insurances/204",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"insurances",
+						"204"
 					]
 				}
 			},

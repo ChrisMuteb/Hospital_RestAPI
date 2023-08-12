@@ -34,6 +34,11 @@ public class HospitalSecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "api/bills").hasRole("MANAGER")
                         .requestMatchers(HttpMethod.DELETE, "api/doctors/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "api/bills/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "api/insurances").hasRole("EMPLOYEE")
+                        .requestMatchers(HttpMethod.GET, "api/insurances/**").hasRole("EMPLOYEE")
+                        .requestMatchers(HttpMethod.POST, "api/insurances").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.PUT, "api/insurances").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.DELETE, "api/insurances/**").hasRole("ADMIN")
         );
         // use HTTP Basic authentication
         http.httpBasic(Customizer.withDefaults());
