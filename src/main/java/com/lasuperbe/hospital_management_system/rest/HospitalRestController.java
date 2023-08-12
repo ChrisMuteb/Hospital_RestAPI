@@ -1,5 +1,6 @@
 package com.lasuperbe.hospital_management_system.rest;
 
+import com.lasuperbe.hospital_management_system.entity.Bill;
 import com.lasuperbe.hospital_management_system.entity.Doctor;
 import com.lasuperbe.hospital_management_system.service.HospitalService;
 import org.springframework.web.bind.annotation.*;
@@ -55,5 +56,48 @@ public class HospitalRestController {
         hospitalService.deleteById(doctorId);
 
         return "Deleted doctor id - " + doctorId;
+    }
+
+    // Bill
+    // expose "/bills" and return a list of doctors
+    @GetMapping("/bills")
+    public List<Bill> bill_findAll(){ return hospitalService.bill_findAll();}
+
+    // expose "/bills/{billId}" and return a bill
+    @GetMapping("/bills/{billId}")
+    public Bill getBill(@PathVariable Integer billId){
+        Bill bill = hospitalService.bill_findById(billId);
+
+        if(bill == null)
+            throw new RuntimeException("Bill id not found - " + billId);
+        return bill;
+    }
+
+    // add mapping for POST /bills - add new bill
+    @PostMapping("/bills")
+    public Bill addBill(@RequestBody Bill theBill){
+        theBill.setId(0);
+        Bill dbBill = hospitalService.bill_save(theBill);
+
+        return dbBill;
+    }
+
+    // add mapping for PUT /bills - update existing bill
+    @PutMapping("/bills")
+    public Bill updateBill(@RequestBody Bill theBill){
+        Bill dbBill = hospitalService.bill_save(theBill);
+        return dbBill;
+    }
+
+    // add mapping for DELETE /bills/{billId} - delete doctor
+    @DeleteMapping("/bills/{billId}")
+    public String deleteBill(@PathVariable Integer billId){
+        Bill tempBill = hospitalService.bill_findById(billId);
+        if(tempBill == null)
+            throw new RuntimeException("Bill id not found - " + billId);
+
+        hospitalService.bill_deleteById(billId);
+
+        return "Deleted doctor id - " + billId;
     }
 }
